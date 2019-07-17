@@ -1,0 +1,11 @@
+project/local_settings.py
+*.sqlite3
+/.idea/
+node_modules
+venv
+media
+/static
+.coverage
+__pycache__/
+*.pyc
+settings.py
