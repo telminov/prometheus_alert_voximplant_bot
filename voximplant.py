@@ -6,15 +6,16 @@ import settings
 
 
 class Notifier:
-    def __init__(self, phones: List[str], message: str):
+    def __init__(self, phones: List[str], message: str, rule_id: int):
         self.phones = phones
         self.message = message
+        self.rule_id = rule_id
 
     def create(self):
         params = {
             'account_id': settings.VOX_ACCOUNT_ID,
             'api_key': settings.VOX_API_KEY,
-            'rule_id': settings.VOX_RULE_ID,
+            'rule_id': self.rule_id,
             'priority': '1',
             'max_simultaneous': '3',
             'num_attempts': '2',
