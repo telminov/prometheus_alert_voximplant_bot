@@ -1,8 +1,8 @@
 from typing import List
-import requests
 import os
 import tempfile
 import settings
+import aiohttp
 
 
 class Notifier:
@@ -11,7 +11,7 @@ class Notifier:
         self.message = message
         self.rule_id = rule_id
 
-    def create(self):
+    async def create(self):
         params = {
             'account_id': settings.VOX_ACCOUNT_ID,
             'api_key': settings.VOX_API_KEY,
@@ -23,12 +23,19 @@ class Notifier:
         }
         url = 'https://api.voximplant.com/platform_api/CreateCallList/'
         file_path = self._create_call_list()
+
+        response_json = None
         with open(file_path, mode='rb') as f:
-            response = requests.post(url, params=params, files={'file_content': f})
+            async with aiohttp.ClientSession() as session:
+                async with session.post(url, params=params, data={'file_content': f}) as response:
+                    status_code = response.status
+                    if status_code == 200:
+                        response_json = await response.json()
+
         os.unlink(file_path)
 
-        if response.status_code == 200:
-            return response.json()
+        if status_code == 200:
+            return response_json
         else:
             raise Exception(f'Create notification error: {response.content}')
 
