@@ -4,7 +4,7 @@ ALERT ServiceDown
   # FOR 1m
   LABELS { severity = "page" }
   ANNOTATIONS {
-    summary = "Тестовый сервим лежит",
+    summary = "Тестовый сервис лежит",
     description = "Упал тестовый сервис.",
     phones = '79991234567,79997654321',
   }
