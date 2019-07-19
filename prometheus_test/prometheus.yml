@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 25s
+  evaluation_interval: 25s
+  scrape_timeout: 20s
+
+  external_labels:
+    monitor: 'voximplant-test-monitor'
+
+rule_files:
+  - '/etc/prometheus/alert.rules'
+
+scrape_configs:
+  - job_name: 'voximplant_bot'
+    scrape_interval: 5s
+    scheme: http
+    static_configs:
+      - targets: ['voximplant_bot:8000']

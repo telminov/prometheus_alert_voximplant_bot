@@ -1,0 +1,10 @@
+# Тестовый алерт
+ALERT ServiceDown
+  IF voximplant_bot_alive == 1
+  # FOR 1m
+  LABELS { severity = "page" }
+  ANNOTATIONS {
+    summary = "Тестовый сервим лежит",
+    description = "Упал тестовый сервис.",
+    phones = '79991234567,79997654321',
+  }
