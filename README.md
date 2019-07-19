@@ -6,7 +6,7 @@
 2. Создаем приложение
 3. Создаем сценарий (копируем из проекта vox_scenario.js). Меняем в нем значение переменной caller_id 
 на проверенный voximplant номер телефона (https://manage.voximplant.com/settings/caller_ids)
-4. Создаем роль. Прописываем ID роли в VOX_RULE_ID в settings.py 
+4. Создаем роль.
 5. Прописываем VOX_ACCOUNT_ID и VOX_API_KEY из  (https://manage.voximplant.com/settings/api_keys) в settings.py 
 Статья по теме: https://voximplant.com/docs/references/articles/quickstart/apps-scenarios-rules-and-users
 
